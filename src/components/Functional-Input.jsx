@@ -14,6 +14,11 @@ export default function FunctionalInput({ name }) {
     setInputVal('');
   }
 
+  function handleDelete(id) {
+    const updatedTodos = todos.filter((todo, index) => index !== id);
+    setTodos(updatedTodos);
+  }
+
   return (
     <section className='border shadow-md p-4 flex flex-col gap-2 items-center rounded-sm border-neutral-700'>
       <h3 className='uppercase font-bold'>{name}</h3>
@@ -36,8 +41,17 @@ export default function FunctionalInput({ name }) {
       </form>
       <h4>All the tasks!</h4>
       <ul className='list-disc'>
-        {todos.map(todo => (
-          <li key={todo}> {todo}</li>
+        {todos.map((todo, index) => (
+          <div className='flex items-center gap-2 mb-2'>
+            <li key={todo}>{todo}</li>
+            <button
+              className='border border-red-500 hover:cursor-pointer text-red-800 bg-red-50 px-3 py-0.5 rounded-sm'
+              type='button'
+              onClick={() => handleDelete(index)}
+            >
+              Delete
+            </button>
+          </div>
         ))}
       </ul>
     </section>
