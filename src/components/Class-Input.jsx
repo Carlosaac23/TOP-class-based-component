@@ -32,7 +32,6 @@ export default class ClassInput extends Component {
     return (
       <section className='border shadow-md p-4 flex flex-col gap-2 items-center rounded-sm border-neutral-700'>
         <h3 className='uppercase font-bold'>{this.props.name}</h3>
-
         <form className='flex items-center gap-2' onSubmit={this.handleSubmit}>
           <label htmlFor='task-entry'>Enter a task: </label>
           <input
@@ -53,7 +52,15 @@ export default class ClassInput extends Component {
         <h4>All the tasks!</h4>
         <ul className='list-disc'>
           {this.state.todos.map(todo => (
-            <li key={todo}> {todo}</li>
+            <div className='flex items-center gap-2 mb-2'>
+              <li key={todo}>{todo}</li>
+              <button
+                className='border border-red-500 hover:cursor-pointer text-red-800 bg-red-50 px-3 py-0.5 rounded-sm'
+                type='button'
+              >
+                Delete
+              </button>
+            </div>
           ))}
         </ul>
       </section>
