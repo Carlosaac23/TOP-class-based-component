@@ -28,6 +28,12 @@ export default class ClassInput extends Component {
     }));
   }
 
+  handleDelete(id) {
+    this.setState(state => ({
+      todos: state.todos.filter((todo, index) => index !== id),
+    }));
+  }
+
   render() {
     return (
       <section className='border shadow-md p-4 flex flex-col gap-2 items-center rounded-sm border-neutral-700'>
@@ -51,12 +57,13 @@ export default class ClassInput extends Component {
         </form>
         <h4>All the tasks!</h4>
         <ul className='list-disc'>
-          {this.state.todos.map(todo => (
+          {this.state.todos.map((todo, index) => (
             <div className='flex items-center gap-2 mb-2'>
               <li key={todo}>{todo}</li>
               <button
                 className='border border-red-500 hover:cursor-pointer text-red-800 bg-red-50 px-3 py-0.5 rounded-sm'
                 type='button'
+                onClick={() => this.handleDelete(index)}
               >
                 Delete
               </button>
