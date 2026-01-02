@@ -5,7 +5,7 @@ export default class ClassInput extends Component {
     super(props);
 
     this.state = {
-      todos: [],
+      todos: ['Just some demo tasks', 'As an example'],
       inputVal: '',
     };
 
@@ -35,7 +35,13 @@ export default class ClassInput extends Component {
 
         <form onSubmit={this.handleSubmit}>
           <label htmlFor='task-entry'>Enter a task: </label>
-          <input type='text' id='task-entry' name='task-entry' />
+          <input
+            type='text'
+            id='task-entry'
+            name='task-entry'
+            value={this.state.inputVal}
+            onChange={this.handleInputChange}
+          />
           <button type='submit'>Submit</button>
         </form>
         <h4>All the tasks!</h4>
