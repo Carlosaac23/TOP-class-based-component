@@ -40,8 +40,8 @@ export default function FunctionalInput({ name }) {
           Submit
         </button>
       </form>
-      <h4>All the tasks!</h4>
       <Count todos={todos.length} />
+      <h4>All the tasks!</h4>
       <ul className='list-disc'>
         {todos.map((todo, index) => (
           <div className='flex items-center gap-2 mb-2'>

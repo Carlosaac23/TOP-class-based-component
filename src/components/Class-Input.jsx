@@ -56,8 +56,8 @@ export default class ClassInput extends Component {
             Submit
           </button>
         </form>
-        <h4>All the tasks!</h4>
         <Count todos={this.state.todos.length} />
+        <h4>All the tasks!</h4>
         <ul className='list-disc'>
           {this.state.todos.map((todo, index) => (
             <div className='flex items-center gap-2 mb-2'>

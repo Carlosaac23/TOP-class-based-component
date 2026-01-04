@@ -1,7 +1,9 @@
 export default function Count({ todos }) {
   return (
     <div>
-      <p>Todos: {todos}</p>
+      <p>
+        <span className='font-bold'>Todos:</span> {todos}
+      </p>
     </div>
   );
 }
