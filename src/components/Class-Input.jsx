@@ -23,6 +23,8 @@ export default class ClassInput extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    if (this.state.inputVal.trim() === '') return;
+
     this.setState(state => ({
       todos: state.todos.concat(state.inputVal),
       inputVal: '',

@@ -11,6 +11,8 @@ export default function FunctionalInput({ name }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (inputVal.trim() === '') return;
+
     setTodos(prevTodos => [...prevTodos, inputVal]);
     setInputVal('');
   }
