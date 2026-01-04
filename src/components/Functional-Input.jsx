@@ -4,6 +4,8 @@ import Count from './Count';
 export default function FunctionalInput({ name }) {
   const [todos, setTodos] = useState(['Just some demo tasks', 'As an example']);
   const [inputVal, setInputVal] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingIndex, setEditingIndex] = useState(null);
 
   function handleInputChange(e) {
     setInputVal(e.target.value);
@@ -13,6 +15,18 @@ export default function FunctionalInput({ name }) {
     e.preventDefault();
     if (inputVal.trim() === '') return;
 
+    if (editingIndex !== null) {
+      setTodos(prevTodos =>
+        prevTodos.map((todo, index) => {
+          return index === editingIndex ? inputVal : todo;
+        })
+      );
+      setEditingIndex(null);
+      setInputVal('');
+      setIsEditing(false);
+      return;
+    }
+
     setTodos(prevTodos => [...prevTodos, inputVal]);
     setInputVal('');
   }
@@ -21,6 +35,15 @@ export default function FunctionalInput({ name }) {
     const updatedTodos = todos.filter((todo, index) => index !== id);
     setTodos(updatedTodos);
   }
+
+  function handleEdit(id) {
+    const task = todos.find((todo, index) => index === id);
+    setInputVal(task);
+    setIsEditing(true);
+    setEditingIndex(id);
+  }
+
+  const buttonText = isEditing ? 'Resubmit' : 'Submit';
 
   return (
     <section className='border shadow-md p-4 flex flex-col gap-2 items-center rounded-sm border-neutral-700'>
@@ -39,7 +62,7 @@ export default function FunctionalInput({ name }) {
           className='hover:cursor-pointer rounded-sm hover:bg-neutral-950 hover:text-neutral-50 transition-all duration-150 border border-neutral-600 px-4 py-1'
           type='submit'
         >
-          Submit
+          {buttonText}
         </button>
       </form>
       <Count todos={todos.length} />
@@ -54,6 +77,13 @@ export default function FunctionalInput({ name }) {
               onClick={() => handleDelete(index)}
             >
               Delete
+            </button>
+            <button
+              className='border border-sky-500 hover:cursor-pointer text-sky-800 bg-sky-50 px-3 py-0.5 rounded-sm'
+              type='button'
+              onClick={() => handleEdit(index)}
+            >
+              Edit
             </button>
           </div>
         ))}
