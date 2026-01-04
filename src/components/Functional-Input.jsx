@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Count from './Count';
 
 export default function FunctionalInput({ name }) {
   const [todos, setTodos] = useState(['Just some demo tasks', 'As an example']);
@@ -40,6 +41,7 @@ export default function FunctionalInput({ name }) {
         </button>
       </form>
       <h4>All the tasks!</h4>
+      <Count todos={todos.length} />
       <ul className='list-disc'>
         {todos.map((todo, index) => (
           <div className='flex items-center gap-2 mb-2'>

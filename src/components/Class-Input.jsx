@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import Count from './Count';
 
 export default class ClassInput extends Component {
   constructor(props) {
@@ -56,6 +57,7 @@ export default class ClassInput extends Component {
           </button>
         </form>
         <h4>All the tasks!</h4>
+        <Count todos={this.state.todos.length} />
         <ul className='list-disc'>
           {this.state.todos.map((todo, index) => (
             <div className='flex items-center gap-2 mb-2'>
